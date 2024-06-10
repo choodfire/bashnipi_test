@@ -63,8 +63,8 @@ if os.getenv('POSTGRES_PASSWORD'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'USER': os.getenv('POSTGRES_USER', 'test'),
-            'NAME': os.getenv('POSTGRES_DB', 'test'),
+            'USER': os.getenv('POSTGRES_USER', 'postgres'),
+            'NAME': os.getenv('POSTGRES_DB', 'postgres'),
             'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
             'HOST': 'db',
             'PORT': 5432,
