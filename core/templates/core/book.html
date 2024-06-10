@@ -1,0 +1,40 @@
+{% extends 'main.html' %}
+{% load bootstrap5 %}
+{% block content %}
+
+<div style="width: 50%; margin: auto; margin-top: 20px;">
+    <form method="get">
+        {% csrf_token %}
+        {% bootstrap_form filters.form %}
+        {% buttons %}
+        <button type="submit" class="btn btn-primary">Поиск</button>
+        {% endbuttons %}
+    </form>
+</div>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Название</th>
+      <th scope="col">Дата выхода</th>
+      <th scope="col">Автор</th>
+      <th scope="col">Жанры</th>
+      <th scope="col">Издатель</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for obj in object_list %}
+    <tr>
+          <th scope="row">{{ obj.id }}</th>
+          <td>{{ obj.title }}</td>
+          <td>{{ obj.release_date }}</td>
+          <td>{{ obj.author }}</td>
+          <td>{% for genre in obj.genres.all %}{{ genre }}{% endfor %}</td>
+          <td>{{ obj.publisher }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock content %}

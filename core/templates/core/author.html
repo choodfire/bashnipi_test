@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+{% load bootstrap5 %}
+{% block content %}
+
+<div style="width: 50%; margin: auto; margin-top: 20px;">
+    <form method="get">
+        {% csrf_token %}
+        {% bootstrap_form filters.form %}
+        {% buttons %}
+        <button type="submit" class="btn btn-primary">Поиск</button>
+        {% endbuttons %}
+    </form>
+</div>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Фамилия</th>
+      <th scope="col">Имя</th>
+      <th scope="col">Отчество</th>
+      <th scope="col">День рождения</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for obj in object_list %}
+    <tr>
+          <th scope="row">{{ obj.id }}</th>
+          <td>{{ obj.surname }}</td>
+          <td>{{ obj.first_name }}</td>
+          <td>{{ obj.patronymic }}</td>
+          <td>{{ obj.birthday }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock content %}
